@@ -129,3 +129,137 @@ MPEG LA definió las tarifas de participación para la transmisión por Internet
 
 
 Miro Video Converter es un programa de código abierto con licencia GPL para codificar videos en múltiples formatos. Descárgalo para Mac OS X o Windows . Admite todos los formatos de salida mencionados en este capítulo. No ofrece opciones más allá de elegir un archivo de video y elegir un formato de salida. Puede tomar prácticamente cualquier archivo de video como entrada, incluido el video DV producido por videocámaras de nivel de consumidor. Produce una salida de calidad razonable de la mayoría de los videos.
+
+
+**CODIFICACIÓN DE VÍDEO OGG CON FIREFOGG
+
+Firefogg es una extensión de Firefox con licencia GPL de código abierto para codificar videos Ogg. Para usarlo,se debe instalar Mozilla Firefox 3.5 o posterior, luego visitar firefogg.org .
+
+Firefogg tiene seis "pestañas":
+
+*Preajustes. El valor preestablecido predeterminado es "video web", que está bien para el propósito del video.
+*Rango de codificación. La codificación de video puede llevar mucho tiempo.
+*Control básico de calidad y resolución. 
+*Metadatos.puede agregar metadatos al video codificado como título y autor 
+*Controles avanzados de codificación de video.
+*Controles avanzados de codificación de audio. 
+
+Las únicas opciones que "Control básico de calidad y resolución". Contiene todas las opciones importantes:
+
+Calidad de video. Esto se mide en una escala de 0 (calidad más baja) a 10 (calidad más alta). Los números más altos significan tamaños de archivo más grandes, por lo que deberá experimentar para determinar la mejor relación tamaño/calidad para sus necesidades.
+
+Calidad de audio. Esto se mide en una escala de -1 (calidad más baja) a 10 (calidad más alta). Los números más altos significan tamaños de archivo más grandes, al igual que la configuración de calidad de video.
+
+Códec de vídeo. Esto siempre debe ser "theora".
+
+Códec de audio. Esto siempre debe ser "vorbis".
+
+Ancho de video y altura de video. Estos valores predeterminados son el ancho y la altura reales de su video fuente. Si desea cambiar el tamaño del video durante la codificación, puede cambiar el ancho (o la altura) aquí. Firefogg ajustará automáticamente la otra dimensión para mantener las proporciones originales (para que su video no termine suavizado o estirado).
+
+**DIFICACIÓN POR LOTES DE VIDEO OGG CON FFMPEG2THEORA
+
+Si desea codificar por lotes una gran cantidad de archivos de video Ogg y desea automatizar el proceso, definitivamente se debe consultar ffmpeg2theora .
+
+ffmpeg2theora es una aplicación de código abierto con licencia GPL para codificar video Ogg. Los binarios preconstruidos están disponibles para Mac OS X, Windows y distribuciones modernas de Linux . Puede tomar prácticamente cualquier archivo de video como entrada, incluido el video DV producido por videocámaras de nivel de consumidor.
+
+Para usar ffmpeg2theora, debe llamarlo desde la línea de comando. (En Mac OS X, abra Aplicaciones → Utilidades → Terminal. En Windows, abra su Menú Inicio → Programas → Accesorios → Símbolo del sistema).
+
+ffmpeg2theora puede tomar una gran cantidad de indicadores de línea de comando. (Escriba ffmpeg2theora --helppara leer sobre todos ellos). Tres de ellos son:
+
+--video-quality Q, donde "Q" es un número del 0 al 10.
+--audio-quality Q, donde "Q" es un número de -2 a 10.
+--max_size=WxH, donde "W" y "H" son el ancho y el alto máximos que desea para el video. 
+
+**DIFICACIÓN DE VIDEO H.264 CON HANDBRAKE
+
+HandBrake es una aplicación de código abierto con licencia GPL para codificar video H.264. Los archivos binarios preconstruidos están disponibles para Windows, Mac OS X, y distribuciones modernas de Linux.
+
+HandBrake viene en dos versiones: gráfica y de línea de comandos.video fuente. Haga clic en el botón desplegable "Fuente" y elija "Archivo de video" para seleccionar un archivo. HandBrake puede tomar prácticamente cualquier archivo de video como entrada, incluido el video DV producido por videocámaras de nivel de consumidor.
+
+
+Después de abrir la aplicación HandBrake, lo primero que se debe hacer es seleccionar el video fuente. HandBrake puede tomar prácticamente cualquier archivo de video como entrada, incluido el video DV producido por videocámaras de nivel de consumidor.
+
+En la pestaña "Video", puede configurar cuatro opciones importantes.
+
+*Códec de vídeo. Asegúrese de que sea "H.264 (x264)"
+
+*Codificación de 2 pasos. Si esto está marcado, HandBrake ejecutará el codificador de video dos veces. La primera vez, solo analiza el video, buscando cosas como la composición del color, el movimiento y los saltos de escena. La segunda vez, en realidad codifica el video usando la información que aprendió durante la primera pasada.
+
+*Primer Paso Turbo. Una vez que habilite la codificación de 2 pasos, puede recuperar un poco de tiempo al habilitar el "primer paso turbo". Esto reduce la cantidad de trabajo realizado en la primera pasada (analizar el video), mientras que solo degrada ligeramente la calidad. Normalmente habilito esta opción, pero si la calidad es de suma importancia para usted, debe dejarla deshabilitada.
+
+*Calidad. Hay diferentes formas de especificar la "calidad" de su video codificado. Puede establecer un tamaño de archivo de destino.Puede establecer una "tasa de bits" promedio.O puede especificar una calidad constante, en una escala de 0 a 100%. 
+
+**ICACIÓN POR LOTES DE VIDEO H.264 CON HANDBRAKE
+
+HandBrake también viene en una edición de línea de comandos. Al igual que con ffmpeg2theora , la edición de línea de comandos de HandBrake ofrece una gran variedad de opciones. 
+
+--preset "X", donde “X” es el nombre de un preset de HandBrake. El preajuste que desea para el video web H.264 se llama "iPhone y iPod Touch", y es importante poner el nombre completo entre comillas.
+--width W, donde "W" es el ancho de su video codificado. HandBrake ajustará automáticamente la altura para mantener las proporciones del video original.
+--vb Q, donde "Q" es la tasa de bits promedio (medida en kilobits por segundo).
+--two-pass, que permite la codificación de 2 pasos.
+--turbo, que habilita el primer paso turbo durante la codificación de 2 pasos.
+--input F, donde "F" es el nombre de archivo de su video fuente.
+--output E, donde "E" es el nombre de archivo de destino para su video codificado.
+Este es un ejemplo de llamar a HandBrake en la línea de comando, con indicadores de línea de comando que coinciden con la configuración que elegimos con la versión gráfica de HandBrake .
+
+tú@localhost$HandBrakeCLI --preset "iPhone & iPod Touch"
+                            --width 320
+                            --vb 600
+                            --two-pass
+                            --turbo
+                            --input pr6.dv
+                            --output pr6.mp4
+De arriba a abajo, este comando ejecuta HandBrake con el preajuste "iPhone & iPod Touch", cambia el tamaño del video a 320 × 240, establece la tasa de bits promedio en 600 kbps, habilita la codificación de dos pasos con un primer paso turbo, lee el archivo pr6.dv, y lo codifica como pr6.mp4.
+
+**DIFICACIÓN DE VIDEO WEBM CON FFMPEG
+
+WebM es totalmente compatible con ffmpeg0.6 y versiones posteriores . En la línea de comando, ejecute ffmpegsin parámetros y verifique que se compiló con soporte VP8:
+
+tú@localhost$ffmpeg
+FFmpeg versión SVN-r23197, Copyright (c) 2000-2010 los desarrolladores de FFmpeg
+  construido el 19 de mayo de 2010 22:32:20 con gcc 4.4.3
+  configuración: --enable-gpl --enable-version3 --enable-nonfree --enable-postproc --enable-pthreads --enable-libfaac --enable-libfaad --enable-libmp3lame --enable-libopencore-amrnb - -habilitar-libopencore-amrwb --habilitar-libtheora --habilitar-libx264 --habilitar-libxvid --habilitar-x11grab--enable-libvorbis --enable-libvpx
+
+
+Hay cinco parámetros importantes aquí:
+
+-vcodec libvpxespecifica que esta codificando con el códec de video VP8. WebM siempre usa video VP8.
+-b 614400especifica la tasa de bits. A diferencia de otros formatos, libvpxespera la tasa de bits en bits reales, no en kilobits. Si desea un video de 600 kbps, multiplique 600 por 1024 para obtener 614400.
+-s 320x240especifica el tamaño objetivo, ancho por alto.
+-aspect 4:3especifica la relación de aspecto del vídeo. El video de definición estándar suele ser 4:3, pero la mayoría de los videos de alta definición son 16:9 o 16:10. 
+-acodec libvorbisespecifica que esta codificando con el códec de audio Vorbis. WebM siempre usa audio Vorbis.
+
+**LOS TIPOS MIME LEVANTAN SU FEA CABEZA
+
+¡ LOS ARCHIVOS DE VÍDEO DEBEN SER SERVIDOS CON EL TIPO MIME ADECUADO!
+
+¿Cuál es el tipo MIME adecuado ? es parte del valor del typea tributo en un <source> elemento. Pero establecer el typea tributo en el marcado HTML no es suficiente. También debe asegurarse de que el servidor web incluya el tipo MIME adecuado en el encabezado Content-Type HTTP .
+
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
+La primera línea es para videos en un contenedor Ogg. La segunda línea es para videos en un contenedor MPEG - 4. El tercero es para WebM. Si olvida configurarlo, los videos no se reproducirán en algunos navegadores, aunque haya incluido el tipo MIME en el typeasus videos no se reproducirán en algunos navegadores, aunque haya incluido el tipo MIME en el typea tributo en el marcado HTML . 
+
+**¿QUÉ PASA CON IE?
+
+Internet Explorer 9 admite el elemento HTML5 <video> , pero Microsoft ha prometido públicamente que la versión final de IE 9 admitirá video H.264 y audio AAC en un contenedor MPEG-4, al igual que Safari y el iPhone.
+
+FlowPlayer es un reproductor de vídeo basado en Flash, con licencia GPL y de código abierto. ( Las licencias comerciales también están disponibles ). FlowPlayer no sabe nada sobre el <video>elemento. No transformará mágicamente una <video>etiqueta en un objeto Flash. Pero HTML5 está bien diseñado para manejar esto, porque puedes anidar un <object>elemento dentro de otro <video>elemento. Los navegadores que no admitan video HTML5 ignorarán el <video>elemento y simplemente renderizarán el anidado <object>en su lugar, lo que invocará el complemento Flash y reproducirá la película a través de FlowPlayer. Los navegadores que admiten video HTML5 encontrarán una fuente de video que puedan reproducir y reproducir, e ignorarán el <object>elemento anidado por completo ..
+
+
+**PROBLEMAS EN IPHONES Y IPADS
+  
+iOS es el sistema operativo de Apple que alimenta los iPhone, iPod Touch y iPad. iOS 3.2 tiene varios problemas con el video HTML5 .
+
+iOS no reconocerá el video si incluye un poster atributo. El poster atributo del <video>elemento le permite mostrar una imagen personalizada mientras se carga el video, o hasta que el usuario presiona "reproducir". Este error se solucionó en iOS 4.0, pero pasará algún tiempo antes de que los usuarios actualicen.
+Si tiene varios <source>elementos, iOS no reconocerá nada más que el primero. Dado que los dispositivos iOS solo admiten H.264+AAC+MP4, esto significa que siempre debe incluir primero su MP4. Este error también se solucionó en iOS 4.0.
+
+**PROBLEMAS EN DISPOSITIVOS ANDROID
+  
+Android es el sistema operativo de Google que alimenta una serie de diferentes teléfonos y dispositivos portátiles. Las versiones de Android anteriores a la 2.3 tenían varios problemas con el video HTML5 .
+
+El typeatributo de los <source>elementos confundió mucho a Android. La única forma de lograr que reconozca una fuente de video es, irónicamente, omitir el type atributo por completo y asegurarse de que el nombre del archivo de video H.264+AAC+MP4 termine con una .mp4extensión. Todavía puede incluir el type atributo en sus otras fuentes de video, ya que H.264 es el único formato de video compatible con Android 2.2. (Este error se solucionó en Android 2.3.)
+El controls atributo no fue compatible. No hay efectos negativos por incluirlo, pero Android no mostrará ningún control de interfaz de usuario para un video. Deberá proporcionar sus propios controles de interfaz de usuario. Como mínimo, debe proporcionar una secuencia de comandos que comience a reproducir el video cuando el usuario haga clic en el video. Este error también se solucionó en Android 2.3.
+
+
+
